@@ -1,0 +1,85 @@
+<div class="row">
+    <app-navibar style="font-size: 14px"></app-navibar>
+</div>
+
+<div class="container border border-primary p-4 mt-4 fs-6">
+    <h3>Stock Details</h3>
+
+    <!----------- Stck section ---------------->
+    <div class="row" class="container d-inline-flex p-2 mt-2">
+        <div class="container flex-column p-1 mt-2 ">
+            <!----------- 001 row ---------------->
+
+            <div class="row">
+                <div class="col-5">
+                    <div class="input-group input-group-sm mb-4">
+                        <div class="input-group input-group-sm ">
+                            <label class="input-group-text">Item Name</label>
+                            <select class="form-select" id="inputItemName" style="background-color:rgb(238, 246, 246)"
+                                [(ngModel)]="selectedItemId" (change)="onItemNameChange($event)">
+                                <option *ngFor="let item of itemList" [value]="item.id">{{item.itemName}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="input-group input-group-sm mb-4">
+                        <label class="input-group-text">New Arraivals (Qty)</label>
+                        <input type="text" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-sm" [(ngModel)]="newArrivals">
+                    </div>
+                </div>
+              
+
+                
+
+            </div>
+            <div class="row mt-3">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    
+                    <button class="btn btn-primary"  type="button" (click)="updateStock()" >Add to the Stock</button>
+                </div>
+        
+            </div>
+
+            <div>
+                <h3 style="text-align: center;">List of Registered Items</h3>
+            </div>
+        
+            <div class="text-center" *ngIf="!itemList">
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <table class="table" *ngIf="itemList">
+                    <thead>
+                        <tr class="table-secondary">
+                            <th scope="col">#</th>
+                            <th scope="col">Item Name</th>
+                            <th scope="col">Item Code</th>
+                            <th scope="col">Item Category</th>
+                            <th scope="col">Unit</th>
+                            <th scope="col">Stock Qty</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of itemList; let j = index">
+                            <th scope="row">{{j+1}}</th>
+                            <td>{{item.itemName}}</td>
+                            <td>{{item.itemCode}}</td>
+                            <td>{{item.category}}</td>
+                            <td>{{item.unit}}</td>
+                            <td>{{item.stock}}</td>
+        
+                        </tr>
+        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+</div>

@@ -1,0 +1,254 @@
+<div class="row">
+    <app-navibar style="font-size: 14px"></app-navibar>
+</div>
+<div class="row" class="container flex-column p-2 mt-2 ">
+    <h3>Invoice</h3>
+
+    <!-- -----------------------------Add Item section------------------------ -->
+    <div class="row" class="container d-inline-flex p-2 mt-2 ">
+        <div class=" container flex-column p-1 mt-2" id="main-container">
+
+            <!-- -----------------------------001 Row------------------------ -->
+
+            <div class="row">
+                <div class="col-5">
+                    <div class="input-group input-group-sm mb-4">
+                        <div class="input-group input-group-sm ">
+                            <label class="input-group-text">Item Name</label>
+                            <select class="form-select" id="inputItemName" style="background-color:rgb(238, 246, 246)"
+                                [(ngModel)]="invoice.itemName" (change)="onItemNameChange()">
+                                <option *ngFor="let item of items" [value]="item.itemName">{{item.itemName}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-3">
+                    <div class="input-group input-group-sm mb-4">
+                        <label class="input-group-text">Units</label>
+                        <input type="text" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-sm" [value]="invoice.units">
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="input-group input-group-sm mb-4">
+                        <label class="input-group-text">Invoice Number</label>
+                        <input type="text" class="form-control" aria-label="Sizing example input"
+                            [(ngModel)]="invoice.invoiceNumber" [value]="invoice.invoiceNumber"
+                            aria-describedby="inputGroup-sizing-sm">
+                    </div>
+                </div>
+
+            </div>
+            <!-- -----------------------------002 Row------------------------ -->
+            <div class="row">
+                <div class="col-4">
+                    <div class="input-group input-group-sm mb-4">
+                        <span class="input-group-text" id="inputcostOfItem">Cost of Item</span>
+                        <span class="input-group-text">Rs.</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-sm" [value]="invoice.cost">
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="input-group input-group-sm mb-4">
+                        <span class="input-group-text" id="inputDiscount">Add Marging</span>
+                        <span class="input-group-text">( % )</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-sm" [(ngModel)]="invoice.margin"
+                            (change)="updateWholesalePrice()">
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="input-group input-group-sm mb-4">
+                        <span class="input-group-text" id="inputWholesale Price">Wholesale Price</span>
+                        <span class="input-group-text">Rs.</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-sm" [(ngModel)]="invoice.sellingPrice">
+                    </div>
+                </div>
+
+            </div>
+            <!-- -----------------------------003 Row------------------------ -->
+            <div class="row">
+
+                <div class="col-4">
+                    <div class="input-group input-group-sm mb-4">
+                        <span class="input-group-text" id="inputQuantity">Quntity</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-sm" [(ngModel)]="invoice.quantity"
+                            (change)="updateQuantity()">
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="input-group input-group-sm mb-4">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">In Stock</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input"
+                            [(ngModel)]="invoice.inStock" aria-describedby="inputGroup-sizing-sm">
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="input-group input-group-sm mb-4">
+                        <span class="input-group-text" id="totalValue">Total value</span>
+                        <span class="input-group-text">Rs.</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-sm" [(ngModel)]="invoice.itemsValue">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- -----------------------------Other Detail Section------------------------ -->
+    <div class="row" class="container flex-column p-2 mt-1 ">
+        <div class="container">
+
+            <!-- ------------------01 Row------------------------ -->
+            <div class="row">
+                <div class="row ">
+                    <div class="col-3">
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-text fs-7" id="inputDate">Date</span>
+                            <input type="text" class="form-control fs-7" aria-label="Sizing example input"
+                                aria-describedby="inputGroup-sizing-sm" [(ngModel)]="invoice.currentDate"
+                                (keyup.enter)="onDateEntered($event)">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="input-group input-group-sm mb-3">
+                            <label class="input-group-text fs-7">Sales ref</label>
+                            <select class="form-select fs-7" id="inputSelectrefName"
+                                style="background-color:rgb(238, 246, 246)" [(ngModel)]="invoice.selectedRef"
+                                (Change)="onSelectionRefChange($event)">
+                                <option *ngFor="let user of userRefList" [value]="user.firstName +' '+ user.lastName">
+                                    {{user.firstName}}
+                                    {{user.lastName}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="input-group input-group-sm mb-3">
+                            <label class="input-group-text fs-7" for="inputCustomer">Customer</label>
+                            <select class="form-select fs-7" id="custName" style="background-color:rgb(238, 246, 246)"
+                                (change)="onCustomerSelectionChange($event)" [(ngModel)]="invoice.selectedCustomer">
+                                <option *ngFor="let customer of customerRefList"
+                                    [value]="customer.firstName + ' ' + customer.lastName">
+                                    {{customer.firstName}} {{customer.lastName}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ------------------02 Row------------------------ -->
+            <div class="row">
+                <div class="col-4">
+                    <div class="input-group input-group-sm mb-3">
+                        <label class="input-group-text">Pavement type</label>
+                        <select class="form-select" [(ngModel)]="invoice.paymentType"
+                            (change)="onSelectedPavementType($event)" style="background-color:rgb(238, 246, 246)">
+                            <option value="Cash">Cash</option>
+                            <option value="Credit">Credit</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-5">
+                    <div class="input-group input-group-sm mb-3">
+                        <label class="input-group-text">Remarks</label>
+                        <select class="form-select" style="background-color:rgb(238, 246, 246)"
+                            [(ngModel)]="invoice.selectedRemarksType" (change)="onSelectedRemarksType($event)">
+                            <option value="Cash">Cash</option>
+                            <option value="21 Days">21 Days</option>
+                            <option value="30 Days">30 Days</option>
+                            <option value="45 Days">45 Days</option>
+                            <option value="60 Days">60 Days</option>
+                            <option value="75 Days">75 Days</option>
+                            <option value="90 Days">90 Days</option>
+                            <option value="Cash-Remake">Cash-Remake</option>
+                            <option value="21 Days-Remake">21 Days-Remake</option>
+                            <option value="30 Days-Remake">30 Days-Remake</option>
+                            <option value="45 Days-Remake">45 Days-Remake</option>
+                            <option value="60 Days-Remake">60 Days-Remake</option>
+                            <option value="75 Days-Remake">75 Days-Remake</option>
+                            <option value="90 Days-Remake">90 Days-Remake</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ------------------03 Row------------------------ -->
+            <div class="row">
+                <div class="col-3">
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text">Assign to</span>
+                        <select class="form-select fs-7" id="selectAssignTo" style="background-color:rgb(238, 246, 246)"
+                            [(ngModel)]="invoice.selectedAssignTo" (change)="onAssignToChange()">
+                            <option value="Finance Manager">Finance Manager</option>
+                            <option value="Seanier Manager">Seanier Manager</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-5">
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text">Name of {{ invoice.selectedAssignTo }}</span>
+                        <select class="form-select fs-7" id="selectAssignee" [(ngModel)]="invoice.selectedAssignName"
+                            (change)="onassinTo()" style="background-color:rgb(238, 246, 246)">
+                            <option *ngFor="let user of users" [value]="user.firstName + ' ' + user.lastName">{{
+                                user.firstName }} {{ user.lastName }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="input-group input-group-sm mb-3">
+                        <label class="input-group-text" for="inputGroupSelect01">Lorry</label>
+                        <select class="form-select" style="background-color:rgb(238, 246, 246)"
+                            [(ngModel)]="invoice.lorryNumber" (change)="selectedLorrry($event)">
+                            <option value="LK-3568">LK-3568</option>
+                            <option value="LR-2332">LR-2332</option>
+                            <option value="LN-8596">LN-8596</option>
+                            <option value="LG-5682">LG-5682</option>
+                            <option value="LK-7563">LK-7563</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <!-- ------------------04 Row------------------------ -->
+            <div class="row">
+                <div class="col-4">
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text">Tax Total</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-sm" placeholder="(No need to fill)">
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text">Discount Total</span>
+                        <span class="input-group-text">( % )</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input"
+                            [(ngModel)]="invoice.discount" (change)="onUpdateTotalDiscount()"
+                            aria-describedby="inputGroup-sizing-sm">
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text">Net Total</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input"
+                            [(ngModel)]="invoice.netTotalOfInvoice" aria-describedby="inputGroup-sizing-sm">
+                    </div>
+                </div>
+            </div>
+
+            <!-- ------------------06 Row------------------------ -->
+            <div class="row">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button class="btn btn-primary me-md-2" type="button" (click)="clearAll()">Clear All</button>
+                    <button class="btn btn-primary" type="button" (click)="saveForApproval()">Save invoice</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

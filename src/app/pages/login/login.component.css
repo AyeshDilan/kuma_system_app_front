@@ -1,0 +1,78 @@
+h1{
+    color: rgb(247, 248, 248);
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    padding-top: 10%;
+}
+
+hr{
+    margin-left: auto;
+    margin-right: auto;
+    width: 35%;
+    color: rgb(255, 255, 255);
+}
+
+#login-background {
+    background-image: url(../../../assets/Long-Read-Sequencing-Stocks.jpg);
+    height: 100vh;
+    width: 100vw;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    justify-content: center;
+    align-items: center;
+  }
+
+h2{
+    align-content: center;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5%;
+    margin-top: -3%;
+}
+
+.buttons-login-signup{
+    padding-left: 38%;
+}
+
+button{
+    width: 70px;  
+}
+
+#btn-login{
+    margin-right: 15px;
+    border-radius: 5px;
+    padding: 3%
+}
+
+#btn-signup{
+    border-radius: 5px;
+    padding: 3%
+}
+
+#loin-container{
+    height: max-content;
+    width: max-content;
+    margin: auto;
+    width: 26%;
+    border: 3px;
+    border-color: rgb(45, 128, 200);
+    padding: 3%;
+    border-radius: 10px;
+    background-color: rgb(246, 244, 243,0.8);  
+}
+
+input{
+    width: 100%;
+}
+
+
+
+
+
+
+
+
+
+

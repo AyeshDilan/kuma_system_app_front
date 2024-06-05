@@ -1,0 +1,62 @@
+<div id="login-background">
+  <h1>KUMA SYSTEM APP</h1>
+  <hr>
+  <div id="loin-container">
+    <h2>Register</h2>
+    <form #registerForm="ngForm" (ngSubmit)="handleClick(registerForm)">
+      <table>
+        <tr>
+          <td>First name</td>
+          <td>:</td>
+          <td><input [(ngModel)]="user.firstName" name="firstName" type="text" placeholder="first name" required
+              autofocus></td>
+        </tr>
+        <tr>
+          <td>Last name</td>
+          <td>:</td>
+          <td><input [(ngModel)]="user.lastName" name="lastName" type="text" placeholder="last name" required></td>
+        </tr>
+        <tr>
+          <td>Position</td>
+          <td>:</td>
+          <td>
+            <select class="form-select form-select-sm border-black" [(ngModel)]="user.position" name="position"
+              required>
+              <option value="Section Manager">Section Manager</option>
+              <option value="Senior Manager">Senior Manager</option>
+              <option value="Finance Manager">Finance Manager</option>
+              <option value="Sales Rep">Sales Rep</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>Nic Number</td>
+          <td>:</td>
+          <td><input [(ngModel)]="user.nicNumber" name="nicNumber" type="text" placeholder="nic" required></td>
+        </tr>
+        <tr>
+          <td><strong>User email</strong></td>
+          <td>:</td>
+          <td><input [(ngModel)]="user.email" name="email" type="email" placeholder="user@gmail.com" required></td>
+        </tr>
+        <tr>
+          <td><strong>Password</strong></td>
+          <td>:</td>
+          <td><input [(ngModel)]="user.password" name="password" type="password" placeholder="password" required></td>
+        </tr>
+        <tr>
+          <td>Contact number</td>
+          <td>:</td>
+          <td><input [(ngModel)]="user.contact" name="contact" type="text" placeholder="phone number" required></td>
+        </tr>
+      </table>
+      <br>
+      <div class="buttons-login-signup">
+        <button id="btn-signup" type="submit">Register</button>
+        <a routerLink="/login">
+          <button id="btn-login" type="button">To Login</button>
+        </a>
+      </div>
+    </form>
+  </div>
+</div>

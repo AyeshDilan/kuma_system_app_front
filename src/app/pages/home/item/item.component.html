@@ -1,0 +1,99 @@
+<div class="row">
+    <app-navibar style="font-size: 14px"></app-navibar>
+</div>
+<div class="container border border-primary p-4 mt-4 fs-6">
+    <h3>Add to Product Details</h3>
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <label for="exampleItemName">Item Name</label>
+                <input type="text" [(ngModel)]="item.itemName" class="form-control" id="inputItemName"
+                    placeholder="Item name">
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <label for="exampleItemCode">Item Code (Ex- ELT00001, ORG00001)</label>
+                <input type="text" [(ngModel)]="item.itemCode" class="form-control" id="inputItemCode"
+                    placeholder="Item Code">
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-4">
+            <label for="exampleUnit">Category</label>
+            <select [(ngModel)]="item.category" class="form-select" id="itemUnit">
+                <option value="Ltoro">Ltoro</option>
+                <option value="Orange">Orange</option>
+            </select>
+        </div>
+        <div class="col-5">
+            <div class="form-group">
+                <label for="exampleSupplierName">Supplier Name</label>
+                <input type="text" [(ngModel)]="item.supplierName" class="form-control" id="inputSupplierName"
+                    placeholder="Supplier Name">
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="form-group">
+                <label for="exampleUnit">Unit</label>
+                <select [(ngModel)]="item.unit" class="form-select" id="itemUnit">
+                    <option value="Nos">Nos</option>
+                    <option value="Kg">Kg</option>
+                </select>
+
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-3">
+            <div class="form-group">
+                <label for="exampleUnit">Cost of item ( Rs. )</label>
+                <input [(ngModel)]="item.cost" type="text" class="form-control" id="inputCost"
+                    placeholder="Cost of item">
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button class="btn btn-primary me-md-2" (click)="handleBtnRegisterClick()" type="button">Add to
+                System</button>
+            <button class="btn btn-primary" (click)="clearBtnClick()" type="button">Clear All</button>
+        </div>
+    </div>
+    <hr>
+    <div>
+        <h3 style="text-align: center;">List of Registered Items</h3>
+    </div>
+    <div class="text-center" *ngIf="!itemList">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <table class="table" *ngIf="itemList">
+            <thead>
+                <tr class="table-secondary">
+                    <th scope="col">#</th>
+                    <th scope="col">Item Name</th>
+                    <th scope="col">Item Code</th>
+                    <th scope="col">Item Category</th>
+                    <th scope="col">Supplier Name</th>
+                    <th scope="col">Unit</th>
+                    <th scope="col">cost (Rs.)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of itemList; let j = index">
+                    <th scope="row">{{j+1}}</th>
+                    <td>{{item.itemName}}</td>
+                    <td>{{item.itemCode}}</td>
+                    <td>{{item.category}}</td>
+                    <td>{{item.supplierName}}</td>
+                    <td>{{item.unit}}</td>
+                    <td>{{item.cost}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

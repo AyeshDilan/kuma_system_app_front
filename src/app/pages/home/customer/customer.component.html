@@ -1,0 +1,134 @@
+<div class="row">
+    <app-navibar style="font-size: 14px"></app-navibar>
+</div>
+<div class="container  p-4 mt-4 fs-6">
+    <div>
+        <h3>Add to Customer Details</h3>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="exampleInputFirstName">First Name</label>
+                    <input type="text" [(ngModel)]="customer.firstName" class="form-control" id="inputFirstName"
+                        placeholder="First name">
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="exampleInputLastName">Last Name</label>
+                    <input type="text" [(ngModel)]="customer.lastName" class="form-control" id="inputLastName"
+                        placeholder="Last Name">
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="exampleInputShopName">Shop Name</label>
+                    <input type="text" [(ngModel)]="customer.shopName" class="form-control" id="inputShopName"
+                        placeholder="Shop Name">
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="exampleInputId">Customer ID Number</label>
+                    <input type="text" [(ngModel)]="customer.idNumber" class="form-control" id="inputId"
+                        placeholder="ID Number">
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="exampleInputShopAddress">Shop Address</label>
+                    <input type="text" [(ngModel)]="customer.address" class="form-control" id="inputShopAddress"
+                        placeholder="Shop Address">
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-3">
+                <div class="form-group">
+                    <label for="exampleInputContactNumber1">Contact Number 1</label>
+                    <input type="text" [(ngModel)]="customer.contact1" class="form-control" id="inputContactNumber1"
+                        placeholder="Contact Number1">
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="form-group">
+                    <label for="exampleInputContactNumber2">Contact Number 2</label>
+                    <input type="text" [(ngModel)]="customer.contact2" class="form-control" id="inputContactNumber2"
+                        placeholder="Contact Number2">
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="exampleInputEmail">Email</label>
+                    <input type="email" [(ngModel)]="customer.email" class="form-control" id="inputEmail"
+                        placeholder="customer@gmail.com">
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-3">
+                <div class="form-group">
+                    <label for="exampleInputContactNumber1">Customer Identification code</label>
+                    <input type="text" [(ngModel)]="customer.identificationCode" class="form-control"
+                        id="inputContactNumber1" placeholder="Custermer code">
+                </div>
+            </div>
+
+        </div>
+        <div class="row mt-3">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button class="btn btn-primary me-md-2" (click)="handleClick()" type="button">Add to System</button>
+                <button class="btn btn-primary" (click)="clearAllClick()" type="button">Clear All</button>
+            </div>
+        </div>
+        <hr>
+        <div>
+            <h3 style="text-align: center;">List of Registered customers</h3>
+        </div>
+
+        <div class="text-center" *ngIf="!customerList">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <table class="table" *ngIf="customerList">
+                <thead>
+                    <tr class="table-secondary">
+                        <th scope="col">#</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Shop Name</th>
+                        <th scope="col">Id Number</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">contact1</th>
+                        <th scope="col">contact2</th>
+                        <th scope="col">email</th>
+                        <th scope="col">Identification Code</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let customer of customerList; let i = index">
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{customer.firstName}}</td>
+                        <td>{{customer.lastName}}</td>
+                        <td>{{customer.shopName}}</td>
+                        <td>{{customer.idNumber}}</td>
+                        <td>{{customer.address}}</td>
+                        <td>{{customer.contact1}}</td>
+                        <td>{{customer.contact2}}</td>
+                        <td>{{customer.email}}</td>
+                        <td>{{customer.identificationCode}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+
+</div>

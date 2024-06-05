@@ -1,0 +1,26 @@
+<div id="login-background">
+    <h1>KUMA SYSTEM APP</h1>
+    <hr>
+    <div id="loin-container">
+        <h2>Login</h2>
+        <table>
+            <tr>
+                <td><strong>User Mail</strong></td>
+                <td>:</td>
+                <td><input type="email" placeholder="user@gmail.com" #usermail required autofocus
+                    [(ngModel)]="login.email"></td>
+            </tr>
+            <tr>
+                <td><strong>Password</strong></td>
+                <td>:</td>
+                <td><input type="password" placeholder="password" #password required [(ngModel)]="login.password"></td>
+            </tr>
+        </table><br>
+        <div class="buttons-login-signup">
+            <button id="btn-login" (click)="onLogin()">Login</button>
+            <a href="http://localhost:4200/signup">
+                <button id="btn-signup" click="routingSingup()">Signup</button>
+            </a>
+        </div>
+    </div>
+</div>

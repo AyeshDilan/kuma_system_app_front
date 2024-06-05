@@ -1,0 +1,169 @@
+<div class="row">
+  <app-navibar style="font-size: 14px"></app-navibar>
+</div>
+
+<div class="container border border-primary p-4 mt-4 fs-6">
+  <div class="row">
+    <div class="col-9">
+      <h3>For Approval</h3>
+    </div>
+    <div class="col-3">
+      <div class="input-group input-group-sm mb-4">
+        <label class="input-group-text">Invoice Number</label>
+        <select class="form-select" id="inputItemName" style="background-color: rgb(238, 246, 246)"
+          (change)="selectedInvoiceNumber($event)">
+          <option *ngFor="let invoice of invoiceListForApprove">{{invoice.invoiceNumber}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stock section -->
+  <div class="row container d-inline-flex p-2 mt-2">
+    <div class="container flex-column p-1 mt-2">
+
+      <!-- First Row -->
+      <div class="row">
+        <div class="col-3">
+          <div class="input-group input-group-sm">
+            <span class="input-group-text fs-7" id="inputDate">Date</span>
+            <input type="text" [disabled]="true" class="form-control fs-7" [(ngModel)]="checkedInvoice.invoicedDate ">
+          </div>
+        </div>
+        <div class="col-5">
+          <div class="input-group input-group-sm mb-4">
+            <label class="input-group-text">Item Name</label>
+            <input type="text" [disabled]="true" class="form-control" [(ngModel)]="checkedInvoice.itemName">
+          </div>
+        </div>
+        <div class="col-2">
+          <div class="input-group input-group-sm mb-4">
+            <label class="input-group-text">Units</label>
+            <input type="text" [disabled]="true" class="form-control" [(ngModel)]="checkedInvoice.units">
+          </div>
+        </div>
+        <div class="col-2">
+          <div class="input-group input-group-sm mb-4">
+            <label class="input-group-text">Qty</label>
+            <input type="text" [disabled]="true" class="form-control" [(ngModel)]="checkedInvoice.quantity">
+          </div>
+        </div>
+      </div>
+
+      <!-- Second Row -->
+      <div class="row">
+        <div class="col-3">
+          <div class="input-group input-group-sm mb-4">
+            <label class="input-group-text">Item Cost</label>
+            <input type="text" [disabled]="true" class="form-control" [(ngModel)]="checkedInvoice.cost">
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="input-group input-group-sm mb-4">
+            <label class="input-group-text">Margin (%)</label>
+            <input type="text" class="form-control" [(ngModel)]="checkedInvoice.margin" (change)="onUpdateMargin()">
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="input-group input-group-sm mb-4">
+            <label class="input-group-text">Wholesale Price</label>
+            <input type="text" [disabled]="true" class="form-control" [(ngModel)]="checkedInvoice.wholesalePrice">
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="input-group input-group-sm mb-4">
+            <label class="input-group-text">Sub total</label>
+            <input type="text" [disabled]="true" class="form-control" [(ngModel)]="checkedInvoice.subTotal">
+          </div>
+        </div>
+      </div>
+
+      <!-- Third Row -->
+      <div class="row">
+        <div class="col-3">
+          <div class="input-group input-group-sm mb-4">
+            <label class="input-group-text">Sales ref</label>
+            <input type="text" [disabled]="true" class="form-control" [(ngModel)]="checkedInvoice.salesRef">
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="input-group input-group-sm mb-4">
+            <label class="input-group-text">Customer</label>
+            <input type="text" [disabled]="true" class="form-control" [(ngModel)]="checkedInvoice.customer">
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="input-group input-group-sm mb-4">
+            <label class="input-group-text">Payment Type</label>
+            <input type="text" [disabled]="true" class="form-control" [(ngModel)]="checkedInvoice.paymentType">
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="input-group input-group-sm mb-4">
+            <label class="input-group-text">Remarks</label>
+            <input type="text" [disabled]="true" class="form-control" [(ngModel)]="checkedInvoice.remarks">
+          </div>
+        </div>
+      </div>
+
+      <!-- Fourth Row -->
+      <div class="row">
+        <div class="col-3">
+          <div class="input-group input-group-sm mb-4">
+            <label class="input-group-text">Lorry</label>
+            <input type="text" [disabled]="true" class="form-control" [(ngModel)]="checkedInvoice.lorryNumber">
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="input-group input-group-sm mb-4">
+            <label class="input-group-text">Tax total</label>
+            <input type="text" [disabled]="true" class="form-control" placeholder="(No need to fill)">
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="input-group input-group-sm mb-4">
+            <label class="input-group-text">Discount (%)</label>
+            <input type="text" class="form-control" [(ngModel)]="checkedInvoice.discount"
+              (change)="onUpdateTotalDiscount()">
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="input-group input-group-sm mb-4">
+            <label class="input-group-text">Net Total</label>
+            <input type="text" [disabled]="true" class="form-control" [(ngModel)]="checkedInvoice.netTotal">
+          </div>
+        </div>
+      </div>
+
+      <!-- Fifth Row -->
+      <div class="row" [style.padding-top.px]="20">
+        <div class="col-4">
+          <div class="input-group input-group-sm mb-4">
+            <label class="input-group-text">Approved by</label>
+            <input type="text" [disabled]="true" class="form-control" [(ngModel)]="checkedInvoice.approvedBy">
+          </div>
+        </div>
+        <div class="col-5" [style.padding-left.px]="195">
+          <div class="input-group input-group-sm">
+            <span class="input-group-text fs-7" id="inputDate">Approved Date</span>
+            <input type="text" class="form-control fs-7" [(ngModel)]="checkedInvoice.approvedDate"
+              (keyup.enter)="onDateEntered($event)">
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1" [(ngModel)]="checkedInvoice.status">
+            <label class="form-check-label" for="exampleCheck1">Approved</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Buttons Row -->
+      <div class="row">
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button class="btn btn-primary" type="button" (click)="saveCheckedInvoices()">Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
